@@ -1,13 +1,21 @@
 // components/Header.js
 
 import React from "react";
-
+import { toggleCart } from '../../store/toggleSlice';
+import { useSelector,useDispatch } from 'react-redux';
 
 import Image from "next/image";
 import Link from "next/link";
 
 
 function Header() {
+
+  const dispatch = useDispatch();
+  const cartIsOpen = useSelector(state => state.toggle);
+  const handleToggleCart = () => {
+    dispatch(toggleCart());
+    console.log(cartIsOpen)
+  };
   return (
     <header className="border-b">
       <nav className="flex justify-between items-center px-4 py-6 ">
@@ -26,13 +34,16 @@ function Header() {
         </div>
  
         <div className="flex items-center space-x-8 mr-10">
-        <Image
+          <button onClick={handleToggleCart}>
+          <Image
             src= '/images/icon-cart.svg'
             width={25}
             height={25}
             alt="DENME"
             className=" h-full rounded-md"
           />
+          </button>
+
           <Image
             src="/images/image-avatar.png"
             alt="avatar"

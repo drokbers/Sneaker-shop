@@ -1,10 +1,20 @@
 import React from "react";
 import Image from "next/image";
 
-
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../store/cartSlice';
 
 
 function ProductCard({ product }) {
+  const { id, title, price } = product;
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    const newItem = { id, title, price, quantity: 1 };
+    dispatch(addToCart(newItem));
+  };
+
+
   return (
     <div
       className="grid grid-cols-2 place-items-center h-screen gap-1 "
@@ -78,7 +88,7 @@ function ProductCard({ product }) {
 
             <button
               className="flex items-center justify-center  bg-primary-orange text-white px-4 py-2 rounded-md w-60 h-12 "
-              onClick={null}
+              onClick={handleAddToCart}
             >
               <Image
             src= '/images/icon-cart.svg'
