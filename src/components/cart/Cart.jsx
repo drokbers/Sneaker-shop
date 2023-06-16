@@ -11,16 +11,16 @@ const Cart = () => {
 
   const dispatch = useDispatch();
 
-
   const handleClearCart = () => {
     dispatch(clearCart());
   };
 
   return (
-    <div className="flex absolute right-5 justify-end w-75 h-60 rounded-lg shadow-md p-4  ">
-      
+    <div className="flex absolute right-5 justify-end w-[400px]  h-60 rounded-lg bg-white shadow-md p-4  ">
       {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <div className="flex justify-center w-full items-center">
+          <p>Your cart is empty.</p>
+        </div>
       ) : (
         <div className="flex flex-col justify-between ">
           <div
@@ -28,11 +28,10 @@ const Cart = () => {
             className="font-sans  text-neutral-black font-bold border-b-2"
           >
             <h1>Cart</h1>
-            
           </div>
 
-          <div id='urun bilgi'className=" justify-start">
-          {cartItems.map((item) => (
+          <div id="urun bilgi" className=" justify-start">
+            {cartItems.map((item) => (
               <div key={item.id} className="flex gap-2 ">
                 <Image
                   className="rounded-md justify-start "
@@ -49,21 +48,20 @@ const Cart = () => {
                   </p>
                 </div>
                 <button onClick={handleClearCart}>
-                <Image
-                  className="rounded-md justify-start "
-                  src={'/images/icon-delete.svg'}
-                  width={15}
-                  height={15}
-                  alt="DENME"
-                  id="foto"
-                />
+                  <Image
+                    className="rounded-md justify-start "
+                    src={"/images/icon-delete.svg"}
+                    width={15}
+                    height={15}
+                    alt="DENME"
+                    id="foto"
+                  />
                 </button>
               </div>
             ))}
-
           </div>
-          <div> 
-          <button className="flex items-center  justify-center bg-primary-orange text-white px-4 py-2 rounded-md w-60 h-12">
+          <div>
+            <button className="flex items-center  justify-center bg-primary-orange text-white px-4 py-2 rounded-md w-60 h-12">
               <p>Checkout</p>
             </button>
           </div>

@@ -25,29 +25,43 @@ function Header() {
     setIsOpen(!isOpen);
     dispatch(toggleCart());
   };
-  console.log(isBurgerOpen)
+  console.log(isBurgerOpen);
 
   return (
     <header className="border-b">
       <nav className="flex justify-between items-center px-4 py-6 ">
         <div className="grid grid-cols-2">
           <div className="md:hidden">
-            <button onClick={() => setIsBurgerOpen(!isBurgerOpen)}>
-            <Image
-            src="/images/icon-menu.svg"
-            alt="avatar"
-            width={25}
-            height={25}
-          />
-            </button>
-            {isOpen && (
-            <div className="absolute top-16 left-0 right-0 bg-white py-4 px-6">
-              <Link href="#">Collection</Link>
-              <Link href="#">Men</Link>
-              <Link href="#">Woman</Link>
-              <Link href="#">About</Link>
-              <Link href="#">Contact</Link>
-            </div>
+            {!isBurgerOpen && (
+              <button onClick={() => setIsBurgerOpen(!isBurgerOpen)}>
+                <Image
+                  src="/images/icon-menu.svg"
+                  alt="avatar"
+                  width={25}
+                  height={25}
+                />
+              </button>
+            )}
+            {isBurgerOpen && (
+              <div className="fixed left-0 h-screen w-[200px]  bg-black-200  ">
+                <div className="flex flex-col   text-bodys font-bold bg-white  px-6 h-screen gap-4">
+                  <button onClick={() => setIsBurgerOpen(!isBurgerOpen)}  className="flex items-center justify-start">
+                    <Image
+                      src="/images/icon-close.svg"
+                      alt="avatar"
+                      width={10}
+                      height={10}
+                      
+                    />
+                  </button>
+
+                  <Link href="#">Collection</Link>
+                  <Link href="#">Men</Link>
+                  <Link href="#">Woman</Link>
+                  <Link href="#">About</Link>
+                  <Link href="#">Contact</Link>
+                </div>
+              </div>
             )}
           </div>
           <div className="flex justify-center  ">
