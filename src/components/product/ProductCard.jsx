@@ -28,12 +28,9 @@ function ProductCard({ product }) {
     dispatch(removeFromCart(id));
   };
 
-  const sliderHandler = () => {
-    setIsSliderActive(!isSliderActive);
-  };
-
-  const closeSlideHandler = () => {
-    setIsSliderActive(false);
+  const toggleSlider = () => {
+    console.log(isSliderActive);
+    setIsSliderActive((state) => !state);
   };
 
   const bigPictureHandler = (image) => {
@@ -53,26 +50,29 @@ function ProductCard({ product }) {
       <ProductSlide
         isActive={isSliderActive}
         images={[product.image, ...product.subImages]}
-        onClose={closeSlideHandler}
+        onClose={toggleSlider}
       />
 
-      <div className="flex flex-col md:flex-row  mt-20 gap-10 justify-center w-full items-center">
+      <div className="flex flex-col md:flex-row  mt-20 gap-6 justify-center w-full items-center">
         <div
           id="foto"
-          className="flex flex-col relative gap-3 w-96 flex-shrink-0"
+          className="flex flex-col  gap-3 w-8/12 md:w-5/12 items-center"
         >
-          <div className="w-96">
+          <div className="w-96 relative">
             <div>
-              <button id="zoom" className="flex absolute -right-2">
+              <div
+                onClick={toggleSlider}
+                id="zoom"
+                className="flex absolute -right-2 -top-2 p-5"
+              >
                 <Image
                   src="/images/icon-zoom.png"
                   width={25}
                   height={25}
                   alt="icon-zoom"
                   className="brightness-0 mx-auto rounded-md "
-                  onClick={sliderHandler}
                 />
-              </button>
+              </div>
             </div>
 
             <Image
@@ -81,18 +81,18 @@ function ProductCard({ product }) {
               width={400}
               height={400}
               alt="product-image"
-              onClick={sliderHandler}
+              onClick={toggleSlider}
             />
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 w-96 ">
             {product.subImages.map((image, index) => (
               <Image
                 key={index}
                 src={image}
-                width={100}
-                height={100}
+                width={90}
+                height={90}
                 alt="product-sub-image"
-                className="w-full h-full rounded-md hover:ring-4 ring-yellow-500"
+                className=" rounded-md hover:ring-4 ring-yellow-500"
                 onClick={() => bigPictureHandler(image)}
               />
             ))}
@@ -101,9 +101,9 @@ function ProductCard({ product }) {
 
         <div
           id="bilgi"
-          className="grid grid-row-3 gap-5 w-1/2 md:w-3/12 justify-self-start"
+          className="grid grid-row-3 gap-5 w-8/12 md:w-4/12 px-6 lg:px-0 pr-10 justify-self-start"
         >
-          <h1 className="text-primary-orange font-sans">{product.company}</h1>
+          <h3 className="text-primary-orange font-sans">{product.company}</h3>
           <div>
             <h1 className="text-2xl font-sans text-neutral-black font-bold">
               {product.title}
@@ -112,61 +112,56 @@ function ProductCard({ product }) {
           <p className="text-body">{product.description}</p>
 
           <div className="flex gap-3">
-            <p className="text-2xl font-bold">${product.price}</p>
-            <p className="bg-primary-paleOrange w-12 text-primary-orange flex justify-center items-center font-bold rounded-md">
+            <span className="text-2xl font-bold">${product.price}</span>
+            <span className="bg-primary-paleOrange w-12 text-primary-orange flex justify-center items-center font-bold rounded-md">
               %50
-            </p>
+            </span>
           </div>
           <p className="text-neutral-grayishBlue line-through">$250.00</p>
-          <div>
-            <div className="flex gap-5">
-              <div className="flex items-center justify-around bg-neutral-lightGrayishBlue text-body h-12 rounded-md">
-                <button onClick={removeFromCartHandle}>
-                  <div className="w-3">
-                    <Image
-                      src="/images/icon-minus.svg"
-                      width={30}
-                      height={30}
-                      alt="icon-minus"
-                      className="h-full rounded-md hover:ring-4 ring-yellow-500"
-                    />
-                  </div>
-                </button>
-                <p className="w-4 ">
-                  {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
-                </p>
-                <button onClick={AddToCartHandler}>
-                  <div className="w-3">
-                    <Image
-                      src="/images/icon-plus.svg"
-                      width={30}
-                      height={30}
-                      alt="icon-plus"
-                      className="h-full rounded-md  hover:ring-4 ring-yellow-500 "
-                    />
-                  </div>
-                </button>
-              </div>
 
-              <div className="flex">
-                <button
-                  className={`flex items-center justify-center text-white px-4 py-2 rounded-md w-60 h-12 ${
-                    isButtonActive ? "bg-primary-orange" : "bg-gray-300"
-                  }`}
-                  onClick={AddToCartHandler}
-                  disabled={!isButtonActive}
-                >
-                  <Image
-                    src="/images/icon-cart.svg"
-                    width={30}
-                    height={30}
-                    alt="icon-cart"
-                    className="h-full rounded-md"
-                  />
-                  <span className="ml-2">Add to Cart</span>
-                </button>
-              </div>
+          <div className="flex gap-5">
+            <div className="flex items-center justify-around bg-neutral-lightGrayishBlue text-body h-12 rounded-md">
+              <button className="w-10 p-4"  onClick={removeFromCartHandle}>
+                <Image
+                  src="/images/icon-minus.svg"
+                  width={30}
+                  height={30}
+                  alt="icon-minus"
+                  className="h-full rounded-md hover:ring-4 ring-yellow-500"
+                 
+                />
+              </button>
+
+              <p className="w-4 text-center ">
+                {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
+              </p>
+              <button className="w-10 p-4" onClick={AddToCartHandler}>
+                <Image
+                  src="/images/icon-plus.svg"
+                  width={30}
+                  height={30}
+                  alt="icon-plus"
+                  className="h-full rounded-md  hover:ring-4 ring-yellow-500 "
+                />
+              </button>
             </div>
+
+            <button
+              className={`flex gap-2 items-center justify-center text-white px-4 py-2 rounded-md w-60 h-12 ${
+                isButtonActive ? "bg-primary-orange" : "bg-gray-300"
+              }`}
+              onClick={AddToCartHandler}
+              disabled={!isButtonActive}
+            >
+              <Image
+                src="/images/icon-cart.svg"
+                width={30}
+                height={30}
+                alt="icon-cart"
+                className="h-full rounded-md"
+              />
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>

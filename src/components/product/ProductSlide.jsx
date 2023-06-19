@@ -1,14 +1,8 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
-function ProductSlide({ images, isActive }) {
+function ProductSlide({ images, isActive,onClose }) {
   const [currentImage, setCurrentImage] = useState(images[0]);
-
-  const [isSlideActive, setIsSlideActive] = useState(false);
-
-  useEffect(() => {
-    setIsSlideActive(isActive); 
-  }, [isActive]);
 
   const handleNextClick = () => {
     const currentIndex = images.indexOf(currentImage);
@@ -25,11 +19,8 @@ function ProductSlide({ images, isActive }) {
     setCurrentImage(image);
   }
 
-  const closeSliderHandler = () => {
-    setIsSlideActive(false);
-  };
 
-  if (!isSlideActive) return;
+  if (!isActive) return;
 
   return (
     <div className="fixed top-0 w-screen h-screen opacity-92 bg-neutral-black z-10 flex items-center ">
@@ -44,7 +35,7 @@ function ProductSlide({ images, isActive }) {
                 height={15}
                 alt="icon-close"
                 className="brightness-0 mx-auto  "
-                onClick={closeSliderHandler}
+                onClick={onClose}
                 
               />
             </div>
