@@ -21,6 +21,10 @@ function ProductSlide({ images, isActive }) {
     setCurrentImage(images[prevIndex]);
   };
 
+  const selectFromThumbnailHandler = (image) => {
+    setCurrentImage(image);
+  }
+
   const closeSliderHandler = () => {
     setIsSlideActive(false);
   };
@@ -33,32 +37,33 @@ function ProductSlide({ images, isActive }) {
         <div className="flex">
           ``
           <div className="flex items-center h-full relative w-full">
-            <div className="flex items-center pr-0.5 w-8 h-8   rounded-full absolute -right-0 top-1  ">
+            <div className="flex items-center pr-0.5 w-8 h-8   rounded-full absolute -right-0 top-1   ">
               <Image
                 src="/images/icon-close.svg"
                 width={15}
                 height={15}
-                alt="DENME"
+                alt="icon-close"
                 className="brightness-0 mx-auto  "
                 onClick={closeSliderHandler}
+                
               />
             </div>
-            <div className="flex items-center pr-0.5 w-8 h-8 bg-white absolute -left-5 rounded-full">
+            <div className="flex items-center pr-0.5 w-8 h-8 bg-white absolute -left-5 rounded-full hover:ring-4 ring-yellow-500">
               <Image
                 src="/images/icon-previous.svg"
                 width={8}
                 height={8}
-                alt="DENME"
-                className="brightness-0 mx-auto "
+                alt="icon-previous"
+                className="brightness-0 mx-auto  "
                 onClick={handlePrevClick}
               />
             </div>
-            <div className="flex items-center pr-0.5 w-8 h-8 bg-white absolute -right-5 rounded-full">
+            <div className="flex items-center pr-0.5 w-8 h-8 bg-white absolute -right-4 rounded-full hover:ring-4 ring-yellow-500">
               <Image
                 src="/images/icon-previous.svg"
                 width={8}
                 height={8}
-                alt="DENME"
+                alt="icon-previous"
                 className="brightness-0 mx-auto rotate-180"
                 onClick={handleNextClick}
               />
@@ -68,21 +73,23 @@ function ProductSlide({ images, isActive }) {
               src={currentImage}
               width={400}
               height={400}
-              alt="DENME"
+              alt="product-main-image"
               className="rounded-md "
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-4 justify-between gap-4 mt-4 w-[400px] ">
+        <div className="grid grid-cols-4 justify-between gap-4 mt-4 ml-4 w-[400px] ">
           {images.slice(1).map((image) => (
             <Image
               src={image}
               key={image}
               width={100}
               height={100}
-              alt="Thumbnail Image"
-              className="rounded-md "
+              alt="product-image"
+              className="rounded-md hover:ring-4 ring-yellow-500 "
+              onClick={() => selectFromThumbnailHandler(image)}
+              
             />
           ))}
         </div>

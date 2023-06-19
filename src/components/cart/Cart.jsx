@@ -5,13 +5,13 @@ import Image from "next/image";
 import { clearCart } from "../../store/cartSlice";
 
 const Cart = () => {
-  const cartItems = useSelector((state) => state.cart.items) || [];
-
-  const totalAmount = useSelector((state) => state.cart.totalAmount);
 
   const dispatch = useDispatch();
 
-  const handleClearCart = () => {
+  const cartItems = useSelector((state) => state.cart.items) || [];
+  const totalAmount = useSelector((state) => state.cart.totalAmount);
+
+  const clearCartHandler = () => {
     dispatch(clearCart());
   };
 
@@ -35,25 +35,27 @@ const Cart = () => {
               <div key={item.id} className="flex gap-2 ">
                 <Image
                   className="rounded-md justify-start "
-                  src={item.subImage1}
+                  src={item.subImages[0]}
                   width={50}
                   height={50}
-                  alt="DENME"
+                  alt="product-sub-image"
                   id="foto"
                 />
+                {console.log(item.subImages[0])}
                 <div className="">
-                  <h3>{item.title}</h3>
+                  <h3 className="font-bold">{item.title}</h3>
                   <p>
-                    ${item.price} x {item.quantity} {totalAmount.toFixed(2)}
+                    ${item.price} x {item.quantity} = {totalAmount.toFixed(2)}
                   </p>
+                
                 </div>
-                <button onClick={handleClearCart}>
+                <button onClick={clearCartHandler}>
                   <Image
                     className="rounded-md justify-start "
                     src={"/images/icon-delete.svg"}
                     width={15}
                     height={15}
-                    alt="DENME"
+                    alt="icon-delete"
                     id="foto"
                   />
                 </button>

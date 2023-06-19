@@ -1,4 +1,3 @@
-// components/Header.js
 
 import { useState } from "react";
 import { toggleCart } from "../../store/toggleSlice";
@@ -9,14 +8,7 @@ import Link from "next/link";
 
 function Header() {
   const dispatch = useDispatch();
-  const cartIsOpen = useSelector((state) => state.toggle);
   const cartItems = useSelector((state) => state.cart.items);
-  console.log(cartItems);
-
-  const handleToggleCart = () => {
-    dispatch(toggleCart());
-    console.log(cartIsOpen);
-  };
 
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +17,6 @@ function Header() {
     setIsOpen(!isOpen);
     dispatch(toggleCart());
   };
-  console.log(isBurgerOpen);
 
   return (
     <header className="border-b">
@@ -48,7 +39,7 @@ function Header() {
                   <button onClick={() => setIsBurgerOpen(!isBurgerOpen)}  className="flex items-center justify-start">
                     <Image
                       src="/images/icon-close.svg"
-                      alt="avatar"
+                      alt="icon-close"
                       width={10}
                       height={10}
                       
@@ -83,7 +74,7 @@ function Header() {
                 src="/images/icon-cart.svg"
                 width={30}
                 height={30}
-                alt="cart"
+                alt="icon-cart"
                 className="h-full rounded-md"
               />
             </button>
@@ -106,4 +97,3 @@ function Header() {
 
 export default Header;
 
-//take quantity information in cartslice and show it
