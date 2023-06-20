@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
-function ProductSlide({ images, isActive,onClose }) {
+function ProductSlide({ images, isActive, onClose }) {
   const [currentImage, setCurrentImage] = useState(images[0]);
 
   const handleNextClick = () => {
@@ -17,8 +17,7 @@ function ProductSlide({ images, isActive,onClose }) {
 
   const selectFromThumbnailHandler = (image) => {
     setCurrentImage(image);
-  }
-
+  };
 
   if (!isActive) return;
 
@@ -36,7 +35,6 @@ function ProductSlide({ images, isActive,onClose }) {
                 alt="icon-close"
                 className="brightness-0 mx-auto  "
                 onClick={onClose}
-                
               />
             </div>
             <div className="flex items-center pr-0.5 w-8 h-8 bg-white absolute -left-5 rounded-full hover:ring-4 ring-yellow-500">
@@ -80,7 +78,6 @@ function ProductSlide({ images, isActive,onClose }) {
               alt="product-image"
               className="rounded-md hover:ring-4 ring-yellow-500 "
               onClick={() => selectFromThumbnailHandler(image)}
-              
             />
           ))}
         </div>

@@ -56,9 +56,9 @@ function ProductCard({ product }) {
       <div className="flex flex-col md:flex-row  mt-20 gap-6 justify-center w-full items-center">
         <div
           id="foto"
-          className="flex flex-col  gap-3 w-8/12 md:w-5/12 items-center"
+          className="flex flex-col justify-start md:left-0 gap-3 w-8/12 md:w-5/12 items-start"
         >
-          <div className="w-96 relative">
+          <div className="w-96 relative  justify-start">
             <div>
               <div
                 onClick={toggleSlider}
@@ -70,13 +70,13 @@ function ProductCard({ product }) {
                   width={25}
                   height={25}
                   alt="icon-zoom"
-                  className="brightness-0 mx-auto rounded-md "
+                  className="brightness-0 mx-auto  rounded-md "
                 />
               </div>
             </div>
 
             <Image
-              className="rounded-md"
+              className="rounded-md  "
               src={isCurrentImage}
               width={400}
               height={400}
@@ -101,7 +101,7 @@ function ProductCard({ product }) {
 
         <div
           id="bilgi"
-          className="grid grid-row-3 gap-5 w-8/12 md:w-4/12 px-6 lg:px-0 pr-10 justify-self-start"
+          className="flex flex-col gap-5 w-8/12 md:w-5/12 md:px-10  justify-center"
         >
           <h3 className="text-primary-orange font-sans">{product.company}</h3>
           <div>
@@ -121,14 +121,13 @@ function ProductCard({ product }) {
 
           <div className="flex gap-5">
             <div className="flex items-center justify-around bg-neutral-lightGrayishBlue text-body h-12 rounded-md">
-              <button className="w-10 p-4"  onClick={removeFromCartHandle}>
+              <button className="w-10 p-4" onClick={removeFromCartHandle}>
                 <Image
                   src="/images/icon-minus.svg"
                   width={30}
                   height={30}
                   alt="icon-minus"
                   className="h-full rounded-md hover:ring-4 ring-yellow-500"
-                 
                 />
               </button>
 

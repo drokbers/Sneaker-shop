@@ -20,9 +20,9 @@ function Header() {
 
   return (
     <header className="border-b">
-      <nav className="flex justify-between items-center px-4 py-6 ">
+      <nav className="flex justify-between items-center px-4 py-6  ">
         <div className="grid grid-cols-2">
-          <div className="md:hidden">
+          <div className="md:hidden md:w-auto">
             {!isBurgerOpen && (
               <button onClick={() => setIsBurgerOpen(!isBurgerOpen)}>
                 <Image
@@ -55,7 +55,7 @@ function Header() {
               </div>
             )}
           </div>
-          <div className="flex justify-center  ">
+          <div className="flex justify-center">
             <Image src="/images/logo.svg" alt="Logo" width={145} height={30} />
           </div>
           <div id="menu" className="hidden md:flex items-center space-x-4 ">
@@ -67,15 +67,15 @@ function Header() {
           </div>
         </div>
 
-        <div id="cart" className="flex items-center space-x-3 mr-7">
+        <div id="cart" className="flex items-start space-x-7 mr-7 ">
           <div className="relative">
             <button onClick={toggleModal} className="">
               <Image
                 src="/images/icon-cart.svg"
-                width={30}
-                height={30}
+                width={50}
+                height={50}
                 alt="icon-cart"
-                className="h-full rounded-md"
+                className="h-full rounded-md absolute"
               />
             </button>
             <span className="absolute top-0 right-0 bg-primary-orange text-white px-2 py-1 text-xs rounded-full">
@@ -88,6 +88,7 @@ function Header() {
             alt="avatar"
             width={50}
             height={50}
+            className=""
           />
         </div>
       </nav>

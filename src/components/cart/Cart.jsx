@@ -16,7 +16,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="flex absolute right-5 justify-end w-[400px]  h-60 rounded-lg bg-white shadow-md p-4  ">
+    <div className="flex absolute right-5 z-10 justify-end w-[400px] h-60 rounded-lg bg-white shadow-md p-4  ">
       {cartItems.length === 0 ? (
         <div className="flex justify-center w-full items-center">
           <p>Your cart is empty.</p>
